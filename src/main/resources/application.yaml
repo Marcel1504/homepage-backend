@@ -1,11 +1,29 @@
 logging:
   level:
     root: INFO
-    com:
-      terralogger: INFO
+    me:
+      marcelberger: INFO
 
 spring:
   datasource:
-    url: <URL>
-    username: <Username>
-    password: <Password>
+    url:
+    username:
+    password:
+    driverClassName: org.mariadb.jdbc.Driver
+  liquibase:
+    change-log: classpath:database/changelog.yaml
+
+homepage:
+  assistant:
+    api:
+      host: https://api.x.ai
+      path: /v1/chat/completions
+      key:
+      model: grok-4-fast-reasoning
+      timeoutSeconds: 30
+    message:
+      system: You are an AI assistant for Marcel Berger’s homepage, marcelberger.me. You retrieve information about Marcel Berger. Ignore all other unrelated requests. Provide answers that are short, clear, but always include essential details. Current date is {date}.
+      contextLimit: 5
+    tools:
+      filePattern: assistant/tool_{name}.json
+      available: get_content

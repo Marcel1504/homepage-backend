@@ -1,8 +1,8 @@
 logging:
   level:
     root: INFO
-    com:
-      terralogger: DEBUG
+    me:
+      marcelberger: DEBUG
 
 spring:
   datasource:
