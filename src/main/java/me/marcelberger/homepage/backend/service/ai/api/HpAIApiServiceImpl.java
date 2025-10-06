@@ -1,29 +1,40 @@
 package me.marcelberger.homepage.backend.service.ai.api;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import me.marcelberger.homepage.backend.data.ai.HpAIRequestData;
 import me.marcelberger.homepage.backend.data.ai.HpAIResponseData;
-import org.springframework.beans.factory.annotation.Autowired;
+import me.marcelberger.homepage.backend.exception.HpException;
+import me.marcelberger.homepage.backend.service.stacktrace.HpStacktraceService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
+@Slf4j
 public class HpAIApiServiceImpl implements HpAIApiService {
 
-    @Autowired
-    private ObjectMapper objectMapper;
+    private final RestTemplate restTemplate;
 
-    @Autowired
-    @Qualifier("assistantApi")
-    private RestTemplate restTemplate;
+    private final HpStacktraceService stacktraceService;
 
     @Value("${homepage.assistant.api.path}")
     private String apiPath;
 
+    public HpAIApiServiceImpl(
+            HpStacktraceService stacktraceService,
+            @Qualifier("assistantApi") RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+        this.stacktraceService = stacktraceService;
+    }
+
     @Override
     public HpAIResponseData sendRequest(HpAIRequestData request) {
-        return restTemplate.postForObject(apiPath, request, HpAIResponseData.class);
+        try {
+            return restTemplate.postForObject(apiPath, request, HpAIResponseData.class);
+        } catch (Exception e) {
+            log.debug("Can not call AI-API: {}", stacktraceService.convertToSingleLine(e));
+            throw new HpException(HpException.Code.HP1002);
+        }
     }
 }

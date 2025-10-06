@@ -7,7 +7,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum HpAIFunctionGetContentEnum {
+public enum HpAIFunctionGetContentTypeEnum {
     @JsonProperty("profile")
     PROFILE,
 
@@ -27,5 +27,5 @@ public enum HpAIFunctionGetContentEnum {
     SOCIAL_LINKS,
 
     @JsonEnumDefaultValue
-    UNKNOWN;
+    UNKNOWN
 }

@@ -1,25 +1,27 @@
--- PERSONAL
+-- PROFILE
 INSERT INTO content (type, language, version_date, data) VALUES
-('PERSONAL', 'de', '2000-01-01', '
+('PROFILE', 'DE', '2000-01-01', '
 {
   "firstName": "Vorname",
   "lastName": "Nachname",
   "birthdate": "2000-01-01",
-  "birthplace": "Ort"
+  "birthplace": "Ort",
+  "details": "Geboren im Krankenhaus"
 }');
 INSERT INTO content (type, language, version_date, data) VALUES
-('PERSONAL', 'en', '2000-01-01', '
+('PROFILE', 'EN', '2000-01-01', '
 {
   "firstName": "First Name",
   "lastName": "Last Name",
   "birthdate": "2000-01-01",
-  "birthplace": "Place"
+  "birthplace": "Place",
+  "details": "Born in a hospital"
 }');
 
 
 -- PROJECTS
 INSERT INTO content (type, language, version_date, data) VALUES
-('PROJECTS', 'de', '2000-01-01', '
+('PROJECTS', 'DE', '2000-01-01', '
 [
   {
     "title": "Projekt A",
@@ -29,7 +31,7 @@ INSERT INTO content (type, language, version_date, data) VALUES
   }
 ]');
 INSERT INTO content (type, language, version_date, data) VALUES
-('PROJECTS', 'en', '2000-01-01', '
+('PROJECTS', 'EN', '2000-01-01', '
 [
   {
     "title": "Project A",
@@ -42,7 +44,7 @@ INSERT INTO content (type, language, version_date, data) VALUES
 
 -- JOBS
 INSERT INTO content (type, language, version_date, data) VALUES
-('JOBS', 'de', '2000-01-01', '
+('JOBS', 'DE', '2000-01-01', '
 [
   {
     "company": "Firma",
@@ -70,7 +72,7 @@ INSERT INTO content (type, language, version_date, data) VALUES
   }
 ]');
 INSERT INTO content (type, language, version_date, data) VALUES
-('JOBS', 'en', '2000-01-01', '
+('JOBS', 'EN', '2000-01-01', '
 [
   {
     "company": "Company",
@@ -99,14 +101,79 @@ INSERT INTO content (type, language, version_date, data) VALUES
 ]');
 
 
+-- CERTIFICATIONS
+INSERT INTO content (type, language, version_date, data) VALUES
+('CERTIFICATIONS', 'DE', '2000-01-01', '
+[
+  {
+    "title": "Zertifikat A",
+    "description": "Zertifikat A Beschreibung",
+    "dateFrom": "2000-01-01",
+    "dateTo": null
+  }
+]');
+INSERT INTO content (type, language, version_date, data) VALUES
+('CERTIFICATIONS', 'EN', '2000-01-01', '
+[
+  {
+    "title": "Certificate A",
+    "description": "Certificate A Beschreibung",
+    "dateFrom": "2000-01-01",
+    "dateTo": null
+  }
+]');
+
+
+-- EDUCATION
+INSERT INTO content (type, language, version_date, data) VALUES
+('EDUCATION', 'DE', '2000-01-01', '
+[
+  {
+    "institute": "Schule XYZ",
+    "degree": "Meister",
+    "dateFrom": "1990-01-01",
+    "dateTo": "2020-01-01"
+  }
+]');
+INSERT INTO content (type, language, version_date, data) VALUES
+('EDUCATION', 'EN', '2000-01-01', '
+[
+  {
+    "institute": "School XYZ",
+    "degree": "Master",
+    "dateFrom": "1990-01-01",
+    "dateTo": "2020-01-01"
+  }
+]');
+
+
+-- SOCIAL LINKS
+INSERT INTO content (type, language, version_date, data) VALUES
+('SOCIAL_LINKS', 'DE', '2000-01-01', '
+[
+  {
+    "type": "SOCIAL_MEDIA_XY",
+    "link": "http://link.to"
+  }
+]');
+INSERT INTO content (type, language, version_date, data) VALUES
+('SOCIAL_LINKS', 'EN', '2000-01-01', '
+[
+  {
+    "type": "SOCIAL_MEDIA_XY",
+    "link": "http://link.to"
+  }
+]');
+
+
 -- LEGAL IMPRINT
 INSERT INTO content (type, language, version_date, data) VALUES
-('LEGAL_IMPRINT', 'de', '2000-01-01', '
+('LEGAL_IMPRINT', 'DE', '2000-01-01', '
 {
   "html": "<h1>Impressum</h1><p>Beispieltext für Impressum</p>"
 }');
 INSERT INTO content (type, language, version_date, data) VALUES
-('LEGAL_IMPRINT', 'en', '2000-01-01', '
+('LEGAL_IMPRINT', 'EN', '2000-01-01', '
 {
   "html": "<h1>Imprint</h1><p>Sample text for imprint</p>"
 }');
@@ -114,12 +181,12 @@ INSERT INTO content (type, language, version_date, data) VALUES
 
 -- PRIVACY POLICY
 INSERT INTO content (type, language, version_date, data) VALUES
-('LEGAL_PRIVACY_POLICY', 'de', '2000-01-01', '
+('LEGAL_PRIVACY_POLICY', 'DE', '2000-01-01', '
 {
   "html": "<h1>Datenschutzerklärung</h1><p>Beispieltext für Datenschutzerklärung</p>"
 }');
 INSERT INTO content (type, language, version_date, data) VALUES
-('LEGAL_PRIVACY_POLICY', 'en', '2000-01-01', '
+('LEGAL_PRIVACY_POLICY', 'EN', '2000-01-01', '
 {
   "html": "<h1>Privacy Policy</h1><p>Sample text for privacy policy</p>"
 }');

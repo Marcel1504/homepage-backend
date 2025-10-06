@@ -6,5 +6,5 @@ import me.marcelberger.homepage.backend.enumeration.HpContentTypeEnum;
 import java.util.Locale;
 
 public interface HpContentFacade {
-    String getLatestContent(@NotNull HpContentTypeEnum type, boolean withDetails, Locale locale);
+    String getLatestContent(@NotNull HpContentTypeEnum type, boolean withDetails, @NotNull Locale locale);
 }

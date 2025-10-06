@@ -1,7 +1,9 @@
 package me.marcelberger.homepage.backend.facade.content;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import me.marcelberger.homepage.backend.entity.HpContentEntity;
+import me.marcelberger.homepage.backend.enumeration.HpContentLanguageEnum;
 import me.marcelberger.homepage.backend.enumeration.HpContentTypeEnum;
 import me.marcelberger.homepage.backend.service.content.HpContentService;
 import me.marcelberger.homepage.backend.service.jsonfilter.HpJsonFilterService;
@@ -20,8 +22,11 @@ public class HpContentFacadeImpl implements HpContentFacade {
     private final HpJsonFilterService jsonFilterService;
 
     @Override
+    @Transactional
     public String getLatestContent(HpContentTypeEnum type, boolean withDetails, Locale locale) {
-        HpContentEntity contentEntity = contentService.getLatestContent(type, locale.getLanguage());
+        HpContentEntity contentEntity = contentService.getLatestContent(
+                type,
+                HpContentLanguageEnum.valueOf(locale.getLanguage().toUpperCase()));
         return withDetails
                 ? contentEntity.getData()
                 : jsonFilterService.removeProperty(contentEntity.getData(), "details");

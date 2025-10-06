@@ -9,5 +9,7 @@ public enum HpContentTypeEnum {
     PROFILE,
     PROJECTS,
     JOBS,
-    CERTIFICATIONS
+    CERTIFICATIONS,
+    EDUCATION,
+    SOCIAL_LINKS
 }

@@ -13,5 +13,5 @@ public enum HpAIFinishReasonEnum {
 
     @JsonEnumDefaultValue
     @JsonProperty("stop")
-    STOP;
+    STOP
 }

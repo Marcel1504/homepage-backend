@@ -9,4 +9,6 @@ public interface HpAIPropertyService {
     List<HpAIToolData> getAvailableTools();
 
     HpAIMessageData generateSystemMessage();
+
+    HpAIMessageData generateUserMessage(String message);
 }

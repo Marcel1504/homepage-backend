@@ -5,13 +5,17 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import me.marcelberger.homepage.backend.enumeration.ai.function.HpAIFunctionGetContentEnum;
+import me.marcelberger.homepage.backend.enumeration.ai.function.HpAIFunctionGetContentLanguageEnum;
+import me.marcelberger.homepage.backend.enumeration.ai.function.HpAIFunctionGetContentTypeEnum;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class HpAIFunctionGetContentData {
+    @JsonProperty("lang")
+    private HpAIFunctionGetContentLanguageEnum language;
+
     @JsonProperty("type")
-    private HpAIFunctionGetContentEnum type;
+    private HpAIFunctionGetContentTypeEnum type;
 }

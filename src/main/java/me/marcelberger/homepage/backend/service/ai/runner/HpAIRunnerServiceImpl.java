@@ -1,6 +1,7 @@
 package me.marcelberger.homepage.backend.service.ai.runner;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import me.marcelberger.homepage.backend.data.ai.*;
 import me.marcelberger.homepage.backend.enumeration.ai.HpAIFinishReasonEnum;
 import me.marcelberger.homepage.backend.enumeration.ai.HpAIRoleEnum;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class HpAIRunnerServiceImpl implements HpAIRunnerService {
 
     private final HpAIPropertyService aiPropertyService;
@@ -80,6 +82,7 @@ public class HpAIRunnerServiceImpl implements HpAIRunnerService {
 
     private void validateAIResponse(HpAIResponseData response) {
         if (response == null || response.getChoices() == null || response.getChoices().isEmpty()) {
+            log.debug("Invalid AI response: response or choices not provided");
             throw new HpException(HpException.Code.HP1001);
         }
     }

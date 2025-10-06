@@ -9,3 +9,10 @@ spring:
     url: jdbc:mariadb://localhost:3306/homepage
     username: root
     password: root
+
+homepage:
+  media:
+    basePath: V:\homepage
+  security:
+    corsOrigins: |
+      http://localhost:4200

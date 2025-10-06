@@ -2,6 +2,7 @@ package me.marcelberger.homepage.backend.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import me.marcelberger.homepage.backend.enumeration.HpContentLanguageEnum;
 import me.marcelberger.homepage.backend.enumeration.HpContentTypeEnum;
 
 import java.time.LocalDate;
@@ -27,7 +28,8 @@ public class HpContentEntity {
     private HpContentTypeEnum type;
 
     @Column(name = "language", length = 2, nullable = false)
-    private String language;
+    @Enumerated(EnumType.STRING)
+    private HpContentLanguageEnum language;
 
     @Column(name = "data", columnDefinition = "JSON", nullable = false)
     private String data;

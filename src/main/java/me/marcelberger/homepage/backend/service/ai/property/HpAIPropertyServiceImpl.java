@@ -7,10 +7,10 @@ import me.marcelberger.homepage.backend.data.ai.HpAIMessageData;
 import me.marcelberger.homepage.backend.data.ai.HpAIToolData;
 import me.marcelberger.homepage.backend.enumeration.ai.HpAIRoleEnum;
 import me.marcelberger.homepage.backend.exception.HpException;
+import me.marcelberger.homepage.backend.service.stacktrace.HpStacktraceService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -28,7 +28,7 @@ public class HpAIPropertyServiceImpl implements HpAIPropertyService {
 
     private final ObjectMapper objectMapper;
 
-    private final ResourceLoader resourceLoader;
+    private final HpStacktraceService stacktraceService;
 
     @Value("${homepage.assistant.tools.available}")
     private Set<String> toolsAvailable;
@@ -49,6 +49,7 @@ public class HpAIPropertyServiceImpl implements HpAIPropertyService {
                 HpAIToolData tool = objectMapper.readValue(fileContent, HpAIToolData.class);
                 functions.add(tool);
             } catch (IOException e) {
+                log.debug("Can not load available AI-tools: {}", stacktraceService.convertToSingleLine(e));
                 throw new HpException(HpException.Code.HP1001);
             }
         }
@@ -62,6 +63,14 @@ public class HpAIPropertyServiceImpl implements HpAIPropertyService {
                 LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         return HpAIMessageData.builder()
                 .role(HpAIRoleEnum.SYSTEM)
+                .content(message)
+                .build();
+    }
+
+    @Override
+    public HpAIMessageData generateUserMessage(String message) {
+        return HpAIMessageData.builder()
+                .role(HpAIRoleEnum.USER)
                 .content(message)
                 .build();
     }

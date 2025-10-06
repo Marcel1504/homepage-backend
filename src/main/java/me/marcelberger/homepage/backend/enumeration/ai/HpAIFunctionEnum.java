@@ -12,5 +12,5 @@ public enum HpAIFunctionEnum {
     GET_CONTENT,
 
     @JsonEnumDefaultValue
-    UNKNOWN;
+    UNKNOWN
 }

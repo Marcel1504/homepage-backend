@@ -7,6 +7,14 @@
       "$schema": "http://json-schema.org/draft-07/schema#",
       "type": "object",
       "properties": {
+        "lang": {
+          "type": "string",
+          "description": "User's preferred language. Automatically inferred from the user's message. If not detected, defaults to 'en'.",
+          "enum": [
+            "de",
+            "en"
+          ]
+        },
         "type": {
           "type": "string",
           "description": "The type of content to retrieve. 'profile': personal info like age, name, birthplace. 'projects': personal projects Marcel has worked on. 'jobs': employment history, positions, companies. 'certifications': certificates, professional qualifications. 'education': schools, degrees, educational background. 'social_links': social media profiles or other external links.",
@@ -21,6 +29,7 @@
         }
       },
       "required": [
+        "lang",
         "type"
       ]
     }

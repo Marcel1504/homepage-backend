@@ -11,5 +11,5 @@ public enum HpAIToolTypeEnum {
     @JsonProperty("function")
     FUNCTION,
     @JsonEnumDefaultValue
-    UNKNOWN;
+    UNKNOWN
 }

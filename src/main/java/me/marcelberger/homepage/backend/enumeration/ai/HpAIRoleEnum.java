@@ -16,5 +16,5 @@ public enum HpAIRoleEnum {
     @JsonProperty("system")
     SYSTEM,
     @JsonProperty("function")
-    FUNCTION;
+    FUNCTION
 }
