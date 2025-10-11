@@ -11,6 +11,9 @@ public enum HpAIFunctionEnum {
     @JsonProperty("get_content")
     GET_CONTENT,
 
+    @JsonProperty("block_user")
+    BLOCK_USER,
+
     @JsonEnumDefaultValue
     UNKNOWN
 }

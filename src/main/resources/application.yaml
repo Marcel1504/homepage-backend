@@ -23,10 +23,10 @@ homepage:
       timeoutSeconds: 30
     message:
       system: You are an AI assistant for Marcel Berger’s homepage, marcelberger.me. You retrieve information about Marcel Berger. Ignore all other unrelated requests. Provide answers that are short, clear, but always include essential details. Respond in the same language as the user's message. Current date is {date}.
-      contextLimit: 5
+      contextLimit: 20
     tools:
       filePattern: assistant/tool_{name}.json
-      available: get_content
+      available: get_content, block_user
   media:
     basePath:
   security:

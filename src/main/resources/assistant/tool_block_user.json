@@ -1,0 +1,13 @@
+{
+  "type": "function",
+  "function": {
+    "name": "block_user",
+    "description": "Blocks a user",
+    "parameters": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  }
+}

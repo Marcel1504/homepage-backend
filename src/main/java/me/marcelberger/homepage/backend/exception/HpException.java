@@ -32,6 +32,7 @@ public class HpException extends RuntimeException {
         HP1000("Assistant request timeout", HttpStatus.INTERNAL_SERVER_ERROR),
         HP1001("Assistant processing error", HttpStatus.INTERNAL_SERVER_ERROR),
         HP1002("Assistant connection failure", HttpStatus.INTERNAL_SERVER_ERROR),
+        HP1003("Assistant blocked user", HttpStatus.FORBIDDEN),
         HP2000("Can not find media with name '%s'", HttpStatus.NOT_FOUND),
         HP2001("Can not find media with unknown name", HttpStatus.INTERNAL_SERVER_ERROR),
         HP2002("Can not determine media content type: '%s'", HttpStatus.INTERNAL_SERVER_ERROR),
