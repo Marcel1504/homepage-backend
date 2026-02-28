@@ -28,7 +28,7 @@ public class HpExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<HpErrorData> handleException(Exception e) {
-        log.debug("General error occurred: {}", stacktraceService.convertToSingleLine(e));
+        log.debug("Error occurred during request: {}", stacktraceService.convertToSingleLine(e));
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(HpErrorData.builder()
                 .code(HpException.Code.HP9990)
                 .properties(List.of(e.getMessage()))

@@ -22,9 +22,7 @@ public class HpJsonFilterServiceImpl implements HpJsonFilterService {
     public String removeProperty(String inputJson, String property) {
         try {
             JsonNode rootNode = objectMapper.readTree(inputJson);
-            if (rootNode instanceof ObjectNode o) {
-                removePropertyRecursive(o, property);
-            }
+            removePropertyRecursive(rootNode, property);
             return objectMapper.writeValueAsString(rootNode);
         } catch (Exception e) {
             log.debug("Can not remove property from json: {}", stacktraceService.convertToSingleLine(e));
@@ -32,15 +30,18 @@ public class HpJsonFilterServiceImpl implements HpJsonFilterService {
         }
     }
 
-    private void removePropertyRecursive(ObjectNode node, String propertyToRemove) {
-        if (node.has(propertyToRemove)) {
-            node.remove(propertyToRemove);
-        }
-        node.fieldNames().forEachRemaining(field -> {
-            JsonNode child = node.get(field);
-            if (child.isObject()) {
-                removePropertyRecursive((ObjectNode) child, propertyToRemove);
+    private void removePropertyRecursive(JsonNode node, String propertyToRemove) {
+        if (node.isObject()) {
+            ObjectNode objectNode = (ObjectNode) node;
+            if (objectNode.has(propertyToRemove)) {
+                objectNode.remove(propertyToRemove);
             }
-        });
+            objectNode.fieldNames().forEachRemaining(field ->
+                    removePropertyRecursive(node.get(field), propertyToRemove));
+        } else if (node.isArray()) {
+            for (JsonNode arrayElement : node) {
+                removePropertyRecursive(arrayElement, propertyToRemove);
+            }
+        }
     }
 }

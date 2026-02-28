@@ -4,6 +4,7 @@ import me.marcelberger.homepage.backend.data.ai.HpAIMessageData;
 import me.marcelberger.homepage.backend.data.chat.HpChatRequestData;
 import me.marcelberger.homepage.backend.entity.HpChatEntity;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface HpChatService {
@@ -16,5 +17,7 @@ public interface HpChatService {
 
     List<HpAIMessageData> getContent(HpChatEntity chat);
 
-    void deleteById(Long id);
+    void delete(HpChatEntity chat);
+
+    List<HpChatEntity> getAllByLastActivityTimeUtcBefore(LocalDateTime time);
 }

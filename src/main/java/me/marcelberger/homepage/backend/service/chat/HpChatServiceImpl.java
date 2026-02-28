@@ -84,9 +84,14 @@ public class HpChatServiceImpl implements HpChatService {
     }
 
     @Override
-    public void deleteById(Long id) {
-        if (id != null) {
-            chatRepository.deleteById(id);
+    public void delete(HpChatEntity chat) {
+        if (chat != null) {
+            chatRepository.delete(chat);
         }
+    }
+
+    @Override
+    public List<HpChatEntity> getAllByLastActivityTimeUtcBefore(LocalDateTime time) {
+        return chatRepository.findByLastActivityTimeUtcBefore(time);
     }
 }

@@ -49,23 +49,27 @@ public class HpAIRunnerServiceImpl implements HpAIRunnerService {
         HpAIChoiceData firstChoice = response.getChoices().getFirst();
         updatedMessages.add(firstChoice.getMessage());
         if (HpAIFinishReasonEnum.TOOL_CALLS.equals(firstChoice.getFinishReason())) {
-            // API call response requires a function call
-            handleToolCall(updatedMessages, firstChoice.getMessage().getToolCalls().getFirst());
+            // API call response requires function calls
+            handleToolCall(updatedMessages, firstChoice.getMessage().getToolCalls());
         }
         return updatedMessages;
     }
 
     private void handleToolCall(List<HpAIMessageData> inputMessages,
-                                HpAIToolCallData toolCall) {
+                                List<HpAIToolCallData> toolCalls) {
+        if (toolCalls == null || toolCalls.isEmpty()) {
+            return;
+        }
         // execute the tool call with function services
-        HpAIMessageData functionResultMessage = HpAIMessageData.builder()
-                .role(HpAIRoleEnum.FUNCTION)
-                .name(toolCall.getFunction().getName())
-                .content(executeFunction(toolCall.getFunction()))
-                .build();
-        inputMessages.add(functionResultMessage);
-
-        // run AI API call to provide the result of the tool call
+        for (HpAIToolCallData tc : toolCalls) {
+            HpAIMessageData functionResultMessage = HpAIMessageData.builder()
+                    .role(HpAIRoleEnum.FUNCTION)
+                    .name(tc.getFunction().getName())
+                    .content(executeFunction(tc.getFunction()))
+                    .build();
+            inputMessages.add(functionResultMessage);
+        }
+        // run a single AI API call to provide the result of the tool calls
         HpAIResponseData response = callAIAPI(inputMessages);
         validateAIResponse(response);
         HpAIChoiceData firstChoice = response.getChoices().getFirst();
